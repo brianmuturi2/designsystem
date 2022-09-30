@@ -1,6 +1,5 @@
 @import "variables";
 
-
 /*=============================================
 
 =           Foundation - Colors               =
@@ -13,7 +12,6 @@
 *  with their own variables
 */
 
-
 /*=============================================
 
 =            Global text Colors               =
@@ -21,7 +19,6 @@
 =============================================*/
 $body-text-color: var(--dse-body-text-color, $dark) !default;
 $body-bg-color: var(--dse-body-bg-color, $white) !default;
-
 
 /*=============================================
 
@@ -32,7 +29,6 @@ $btn-primary-color: var(--dse-btn-primary-color, $white) !default;
 $btn-primary-bg: var(--dse-btn-primary-bg, $green) !default;
 $btn-primary-bg-hover: var(--dse-btn-primary-bg-hover, $green-light) !default;
 
-
 /*=============================================
 
 =                   Forms                     =
@@ -41,6 +37,5 @@ $btn-primary-bg-hover: var(--dse-btn-primary-bg-hover, $green-light) !default;
 $form-color: var(--dse-form-color, $dark) !default;
 $form-bg: var(--dse-form-bg, $white) !default;
 $form-error-color: var(--dse-form-error-color, $red) !default;
-$form-error-border: var(--dse-form-error-border, $red) !default;;
+$form-error-border: var(--dse-form-error-border, $red) !default;
 $form-border-focus-color: var(--dse-form-border-focus-color, $green) !default;
-
