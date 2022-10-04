@@ -1,3 +1,4 @@
 .idea
 
+**/playgrounds/react/.cache
 node_modules

@@ -33076,7 +33076,38 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../../../node_modules/react-dom/cjs/react-dom.development.js"}],"../../../node_modules/@designsystem/react/lib/atoms/Button/Button.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"../../../node_modules/react-dom/cjs/react-dom.development.js"}],"../../../node_modules/react-dom/client.js":[function(require,module,exports) {
+'use strict';
+
+var m = require('react-dom');
+
+if ("development" === 'production') {
+  exports.createRoot = m.createRoot;
+  exports.hydrateRoot = m.hydrateRoot;
+} else {
+  var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+
+  exports.createRoot = function (c, o) {
+    i.usingClientEntryPoint = true;
+
+    try {
+      return m.createRoot(c, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+
+  exports.hydrateRoot = function (c, h, o) {
+    i.usingClientEntryPoint = true;
+
+    try {
+      return m.hydrateRoot(c, h, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+}
+},{"react-dom":"../../../node_modules/react-dom/index.js"}],"../../../node_modules/@designsystem/react/lib/atoms/Button/Button.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33097,7 +33128,58 @@ const Button = ({
 };
 
 exports.default = Button;
-},{"react":"../../../node_modules/react/index.js"}],"../../../node_modules/@designsystem/react/lib/index.js":[function(require,module,exports) {
+},{"react":"../../../node_modules/react/index.js"}],"../../../node_modules/@designsystem/react/lib/foundation/Spacing.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+const spaces = {
+  xxxs: 'xxxs',
+  xxs: 'xxs',
+  xs: 'xs',
+  sm: 'sm',
+  md: 'md',
+  lg: 'lg',
+  xl: 'xl',
+  xxl: 'xxl',
+  xxxl: 'xxxl'
+};
+var Spacing = Object.freeze(spaces);
+exports.default = Spacing;
+},{}],"../../../node_modules/@designsystem/react/lib/atoms/Color/Color.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _Spacing = _interopRequireDefault(require("../../foundation/Spacing.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const Color = ({
+  hexCode,
+  width = _Spacing.default.sm,
+  height = _Spacing.default.sm
+}) => {
+  const dimensions = `dse-width-${width} dse-height-${height}`;
+  return _react.default.createElement("div", {
+    className: dimensions,
+    style: {
+      backgroundColor: hexCode,
+      width,
+      height
+    }
+  });
+};
+
+exports.default = Color;
+},{"react":"../../../node_modules/react/index.js","../../foundation/Spacing.js":"../../../node_modules/@designsystem/react/lib/foundation/Spacing.js"}],"../../../node_modules/@designsystem/react/lib/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33109,11 +33191,27 @@ Object.defineProperty(exports, "Button", {
     return _Button.default;
   }
 });
+Object.defineProperty(exports, "Color", {
+  enumerable: true,
+  get: function () {
+    return _Color.default;
+  }
+});
+Object.defineProperty(exports, "Spacing", {
+  enumerable: true,
+  get: function () {
+    return _Spacing.default;
+  }
+});
 
 var _Button = _interopRequireDefault(require("./atoms/Button/Button.js"));
 
+var _Color = _interopRequireDefault(require("./atoms/Color/Color.js"));
+
+var _Spacing = _interopRequireDefault(require("./foundation/Spacing.js"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./atoms/Button/Button.js":"../../../node_modules/@designsystem/react/lib/atoms/Button/Button.js"}],"../../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./atoms/Button/Button.js":"../../../node_modules/@designsystem/react/lib/atoms/Button/Button.js","./atoms/Color/Color.js":"../../../node_modules/@designsystem/react/lib/atoms/Color/Color.js","./foundation/Spacing.js":"../../../node_modules/@designsystem/react/lib/foundation/Spacing.js"}],"../../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -33186,23 +33284,39 @@ module.exports = reloadCSS;
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
+},{"_css_loader":"../../../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../node_modules/@designsystem/scss/lib/Utilities.css":[function(require,module,exports) {
+
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
 },{"_css_loader":"../../../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.tsx":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
 
-var _reactDom = _interopRequireDefault(require("react-dom"));
+var ReactDOM = _interopRequireWildcard(require("react-dom/client"));
 
 var _react2 = require("@designsystem/react");
 
 require("@designsystem/scss/lib/Button.css");
 
+require("@designsystem/scss/lib/Utilities.css");
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom.default.render(_react.default.createElement(_react2.Button, {
-  label: 'Example Button'
-}), document.querySelector('#root'));
-},{"react":"../../../node_modules/react/index.js","react-dom":"../../../node_modules/react-dom/index.js","@designsystem/react":"../../../node_modules/@designsystem/react/lib/index.js","@designsystem/scss/lib/Button.css":"../../../node_modules/@designsystem/scss/lib/Button.css"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var container = document.querySelector('#root');
+var root = ReactDOM.createRoot(container);
+root.render(_react.default.createElement(_react2.Color, {
+  hexCode: '#000',
+  width: _react2.Spacing.sm,
+  height: _react2.Spacing.sm
+}));
+},{"react":"../../../node_modules/react/index.js","react-dom/client":"../../../node_modules/react-dom/client.js","@designsystem/react":"../../../node_modules/@designsystem/react/lib/index.js","@designsystem/scss/lib/Button.css":"../../../node_modules/@designsystem/scss/lib/Button.css","@designsystem/scss/lib/Utilities.css":"../../../node_modules/@designsystem/scss/lib/Utilities.css"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -33230,7 +33344,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45855" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44983" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
