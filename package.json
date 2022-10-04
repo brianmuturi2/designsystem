@@ -5,7 +5,8 @@
   },
   "name": "designsystem",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "playgrounds/*"
   ],
   "private": true,
   "scripts": {
