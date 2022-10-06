@@ -1,6 +1,5 @@
 import React from 'react';
-import '@designsystem/foundation/lib/FontSize';
-import Spacing from '../../foundation/Spacing.js';
+import { Spacing } from '@designsystem/foundation';
 
 const Color = ({ hexCode, width = Spacing.sm, height = Spacing.sm }) => {
     const dimensions = `dse-width-${width} dse-height-${height}`;
