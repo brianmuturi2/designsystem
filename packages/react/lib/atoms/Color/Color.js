@@ -1,4 +1,5 @@
 import React from 'react';
+import '@designsystem/foundation/lib/FontSize';
 import Spacing from '../../foundation/Spacing.js';
 
 const Color = ({ hexCode, width = Spacing.sm, height = Spacing.sm }) => {

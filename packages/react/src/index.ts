@@ -1,9 +1,11 @@
 import Button from './atoms/Button';
-import Color from './atoms/Color/Color';
+import Color from './atoms/Color';
+import Text from './atoms/Text';
 import Spacing from './foundation/Spacing';
 
 export {
     Button,
     Color,
-    Spacing
+    Spacing,
+    Text
 }

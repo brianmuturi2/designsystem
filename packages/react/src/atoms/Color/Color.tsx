@@ -1,5 +1,5 @@
 import React from 'react'
-import {Spacing} from '../../index';
+import {Spacing} from '@designsystem/foundation';
 
 interface ColorProps {
     hexCode: string;

@@ -33128,7 +33128,25 @@ const Button = ({
 };
 
 exports.default = Button;
-},{"react":"../../../node_modules/react/index.js"}],"../../../node_modules/@designsystem/react/lib/foundation/Spacing.js":[function(require,module,exports) {
+},{"react":"../../../node_modules/react/index.js"}],"../../../node_modules/@designsystem/foundation/lib/FontSize.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+const fontSizes = {
+  xs: 'xs',
+  sm: 'sm',
+  base: 'base',
+  lg: 'lg',
+  xl: 'xl'
+};
+
+var _default = Object.freeze(fontSizes);
+
+exports.default = _default;
+},{}],"../../../node_modules/@designsystem/react/lib/foundation/Spacing.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33158,6 +33176,8 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+require("@designsystem/foundation/lib/FontSize");
+
 var _Spacing = _interopRequireDefault(require("../../foundation/Spacing.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -33179,7 +33199,32 @@ const Color = ({
 };
 
 exports.default = Color;
-},{"react":"../../../node_modules/react/index.js","../../foundation/Spacing.js":"../../../node_modules/@designsystem/react/lib/foundation/Spacing.js"}],"../../../node_modules/@designsystem/react/lib/index.js":[function(require,module,exports) {
+},{"react":"../../../node_modules/react/index.js","@designsystem/foundation/lib/FontSize":"../../../node_modules/@designsystem/foundation/lib/FontSize.js","../../foundation/Spacing.js":"../../../node_modules/@designsystem/react/lib/foundation/Spacing.js"}],"../../../node_modules/@designsystem/react/lib/atoms/Text/Text.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _FontSize = _interopRequireDefault(require("@designsystem/foundation/lib/FontSize"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const Text = ({
+  size = _FontSize.default.base,
+  children
+}) => {
+  const classSize = `dse-text-${size}`;
+  return _react.default.createElement("p", {
+    className: classSize
+  }, children);
+};
+
+exports.default = Text;
+},{"react":"../../../node_modules/react/index.js","@designsystem/foundation/lib/FontSize":"../../../node_modules/@designsystem/foundation/lib/FontSize.js"}],"../../../node_modules/@designsystem/react/lib/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33203,15 +33248,23 @@ Object.defineProperty(exports, "Spacing", {
     return _Spacing.default;
   }
 });
+Object.defineProperty(exports, "Text", {
+  enumerable: true,
+  get: function () {
+    return _Text.default;
+  }
+});
 
 var _Button = _interopRequireDefault(require("./atoms/Button/Button.js"));
 
 var _Color = _interopRequireDefault(require("./atoms/Color/Color.js"));
 
+var _Text = _interopRequireDefault(require("./atoms/Text/Text.js"));
+
 var _Spacing = _interopRequireDefault(require("./foundation/Spacing.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./atoms/Button/Button.js":"../../../node_modules/@designsystem/react/lib/atoms/Button/Button.js","./atoms/Color/Color.js":"../../../node_modules/@designsystem/react/lib/atoms/Color/Color.js","./foundation/Spacing.js":"../../../node_modules/@designsystem/react/lib/foundation/Spacing.js"}],"../../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./atoms/Button/Button.js":"../../../node_modules/@designsystem/react/lib/atoms/Button/Button.js","./atoms/Color/Color.js":"../../../node_modules/@designsystem/react/lib/atoms/Color/Color.js","./atoms/Text/Text.js":"../../../node_modules/@designsystem/react/lib/atoms/Text/Text.js","./foundation/Spacing.js":"../../../node_modules/@designsystem/react/lib/foundation/Spacing.js"}],"../../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -33311,11 +33364,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var container = document.querySelector('#root');
 var root = ReactDOM.createRoot(container);
-root.render(_react.default.createElement(_react2.Color, {
-  hexCode: '#000',
-  width: _react2.Spacing.sm,
-  height: _react2.Spacing.sm
-}));
+root.render(_react.default.createElement(_react2.Text, {
+  size: 'xs'
+}, "This is some text"));
 },{"react":"../../../node_modules/react/index.js","react-dom/client":"../../../node_modules/react-dom/client.js","@designsystem/react":"../../../node_modules/@designsystem/react/lib/index.js","@designsystem/scss/lib/Button.css":"../../../node_modules/@designsystem/scss/lib/Button.css","@designsystem/scss/lib/Utilities.css":"../../../node_modules/@designsystem/scss/lib/Utilities.css"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -33344,7 +33395,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44983" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "32913" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
