@@ -13,7 +13,14 @@
 
 /*=============================================
 
-=             Body text sizes                 =
+=             Body font family                =
+
+=============================================*/
+$body-font-family: var(--dse-body-font-family, $playfair) !default;
+
+/*=============================================
+
+=             Body font sizes                 =
 
 =============================================*/
 $body-font-size: var(--dse-body-font-size, $fs-sm) !default;

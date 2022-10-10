@@ -9,6 +9,8 @@ import '@designsystem/scss/lib/Utilities.css'
 
 import '@designsystem/scss/lib/Margin.css'
 
+import '@designsystem/scss/lib/Select.css'
+
 const selectOptions = [
     {
         label: 'Strict black',

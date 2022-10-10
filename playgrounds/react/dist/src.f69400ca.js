@@ -33330,9 +33330,27 @@ const Select = ({
     setIsOpen(!isOpen);
   };
 
-  return _react.default.createElement("div", null, _react.default.createElement("button", {
+  return _react.default.createElement("div", {
+    className: 'dse-select'
+  }, _react.default.createElement("button", {
+    className: 'dse-select__label',
     onClick: onLabelClick
-  }, label), isOpen ? _react.default.createElement("ul", null, options.map((option, optionIndex) => _react.default.createElement("li", {
+  }, _react.default.createElement("span", null, label), _react.default.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    strokeWidth: 1.5,
+    stroke: "currentColor",
+    className: "w-6 h-6",
+    width: '1rem',
+    height: '1rem'
+  }, _react.default.createElement("path", {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    d: "M19.5 8.25l-7.5 7.5-7.5-7.5"
+  }))), isOpen ? _react.default.createElement("ul", {
+    className: 'dse-select__overlay'
+  }, options.map((option, optionIndex) => _react.default.createElement("li", {
     key: option.value,
     onClick: () => onOptionSelected(option, optionIndex)
   }, option.label))) : null);
@@ -33472,6 +33490,12 @@ module.exports = reloadCSS;
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
+},{"_css_loader":"../../../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../node_modules/@designsystem/scss/lib/Select.css":[function(require,module,exports) {
+
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
 },{"_css_loader":"../../../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.tsx":[function(require,module,exports) {
 "use strict";
 
@@ -33486,6 +33510,8 @@ require("@designsystem/scss/lib/Button.css");
 require("@designsystem/scss/lib/Utilities.css");
 
 require("@designsystem/scss/lib/Margin.css");
+
+require("@designsystem/scss/lib/Select.css");
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -33508,7 +33534,7 @@ var root = ReactDOM.createRoot(container);
 root.render(_react.default.createElement(_react2.Select, {
   options: selectOptions
 }));
-},{"react":"../../../node_modules/react/index.js","react-dom/client":"../../../node_modules/react-dom/client.js","@designsystem/react":"../../../node_modules/@designsystem/react/lib/index.js","@designsystem/scss/lib/Button.css":"../../../node_modules/@designsystem/scss/lib/Button.css","@designsystem/scss/lib/Utilities.css":"../../../node_modules/@designsystem/scss/lib/Utilities.css","@designsystem/scss/lib/Margin.css":"../../../node_modules/@designsystem/scss/lib/Margin.css"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../../../node_modules/react/index.js","react-dom/client":"../../../node_modules/react-dom/client.js","@designsystem/react":"../../../node_modules/@designsystem/react/lib/index.js","@designsystem/scss/lib/Button.css":"../../../node_modules/@designsystem/scss/lib/Button.css","@designsystem/scss/lib/Utilities.css":"../../../node_modules/@designsystem/scss/lib/Utilities.css","@designsystem/scss/lib/Margin.css":"../../../node_modules/@designsystem/scss/lib/Margin.css","@designsystem/scss/lib/Select.css":"../../../node_modules/@designsystem/scss/lib/Select.css"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
