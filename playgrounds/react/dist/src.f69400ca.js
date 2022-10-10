@@ -33316,7 +33316,12 @@ const Select = ({
   label = 'Please select an option ...',
   onOptionSelected: handler
 }) => {
+  const labelRef = (0, _react.useRef)(null);
   const [isOpen, setIsOpen] = (0, _react.useState)(false);
+  const [overlayTop, setOverlayTop] = (0, _react.useState)(0);
+  (0, _react.useEffect)(() => {
+    setOverlayTop((labelRef.current?.offsetHeight || 0) + 10);
+  }, [labelRef.current?.offsetHeight]);
 
   const onOptionSelected = (option, optionIndex) => {
     setIsOpen(!isOpen);
@@ -33333,6 +33338,7 @@ const Select = ({
   return _react.default.createElement("div", {
     className: 'dse-select'
   }, _react.default.createElement("button", {
+    ref: labelRef,
     className: 'dse-select__label',
     onClick: onLabelClick
   }, _react.default.createElement("span", null, label), _react.default.createElement("svg", {
@@ -33349,6 +33355,9 @@ const Select = ({
     strokeLinejoin: "round",
     d: "M19.5 8.25l-7.5 7.5-7.5-7.5"
   }))), isOpen ? _react.default.createElement("ul", {
+    style: {
+      top: overlayTop
+    },
     className: 'dse-select__overlay'
   }, options.map((option, optionIndex) => _react.default.createElement("li", {
     key: option.value,
