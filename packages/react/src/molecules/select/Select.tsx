@@ -6,13 +6,20 @@ interface SelectOption {
     value: string;
 }
 
+interface RenderOptionProps {
+    isSelected: boolean;
+    option: SelectOption;
+    getOptionRecommendedProps: (overrideProps?: Object) => Object
+}
+
 interface SelectProps {
     onOptionSelected?: (option: SelectOption, optionIndex: number) => void;
     label?: string;
     options?: SelectOption[];
+    renderOption?: (props: RenderOptionProps) => React.ReactNode
 }
 
-const Select: React.FunctionComponent<SelectProps> = ({options = [], label = 'Please select an option ...', onOptionSelected: handler}) => {
+const Select: React.FunctionComponent<SelectProps> = ({options = [], label = 'Please select an option ...', onOptionSelected: handler, renderOption}) => {
 
     const labelRef = useRef<HTMLButtonElement>(null);
 
@@ -64,7 +71,23 @@ const Select: React.FunctionComponent<SelectProps> = ({options = [], label = 'Pl
                 isOpen ? (
                     <ul style={{top: overlayTop}} className={'dse-select__overlay'}>
                         {options.map((option, optionIndex) => {
-                            const isSelected = selectedIndex === optionIndex
+                            const isSelected = selectedIndex === optionIndex;
+
+                            const renderOptionProps = {
+                                option,
+                                isSelected,
+                                getOptionRecommendedProps: (overrideProps = {}) => ({
+                                    className: `dse-select__option ${isSelected ? 'dse-select__option--selected' : ''}`,
+                                    key: option.value,
+                                    onClick: () => onOptionSelected(option, optionIndex),
+                                    ...overrideProps
+                                })
+                            };
+
+                            if (renderOption) {
+                                return renderOption(renderOptionProps)
+                            }
+
                             return (
                                 <li
                                     className={`dse-select__option ${isSelected ? 'dse-select__option--selected' : ''}`}

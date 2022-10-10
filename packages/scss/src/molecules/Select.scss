@@ -64,7 +64,7 @@
     }
   }
 
-  &__option--selected {
+  &__option--selected, &__option--selected:hover {
     background-color: $form-bg-option-selected;
     color: $form-color-option-selected;
   }
