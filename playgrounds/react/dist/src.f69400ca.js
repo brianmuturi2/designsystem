@@ -33297,7 +33297,49 @@ const Text = ({
 };
 
 exports.default = Text;
-},{"react":"../../../node_modules/react/index.js","@designsystem/foundation":"../../../node_modules/@designsystem/foundation/lib/index.js"}],"../../../node_modules/@designsystem/react/lib/index.js":[function(require,module,exports) {
+},{"react":"../../../node_modules/react/index.js","@designsystem/foundation":"../../../node_modules/@designsystem/foundation/lib/index.js"}],"../../../node_modules/@designsystem/react/lib/molecules/select/Select.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const Select = ({
+  options = [],
+  label = 'Please select an option ...',
+  onOptionSelected: handler
+}) => {
+  const [isOpen, setIsOpen] = (0, _react.useState)(false);
+
+  const onOptionSelected = (option, optionIndex) => {
+    setIsOpen(!isOpen);
+
+    if (handler) {
+      handler(option, optionIndex);
+    }
+  };
+
+  const onLabelClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return _react.default.createElement("div", null, _react.default.createElement("button", {
+    onClick: onLabelClick
+  }, label), isOpen ? _react.default.createElement("ul", null, options.map((option, optionIndex) => _react.default.createElement("li", {
+    key: option.value,
+    onClick: () => onOptionSelected(option, optionIndex)
+  }, option.label))) : null);
+};
+
+exports.default = Select;
+},{"react":"../../../node_modules/react/index.js"}],"../../../node_modules/@designsystem/react/lib/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33321,6 +33363,12 @@ Object.defineProperty(exports, "Margin", {
     return _Margin.default;
   }
 });
+Object.defineProperty(exports, "Select", {
+  enumerable: true,
+  get: function () {
+    return _Select.default;
+  }
+});
 Object.defineProperty(exports, "Text", {
   enumerable: true,
   get: function () {
@@ -33336,8 +33384,10 @@ var _Margin = _interopRequireDefault(require("./atoms/Margin/Margin.js"));
 
 var _Text = _interopRequireDefault(require("./atoms/Text/Text.js"));
 
+var _Select = _interopRequireDefault(require("./molecules/select/Select.js"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./atoms/Button/Button.js":"../../../node_modules/@designsystem/react/lib/atoms/Button/Button.js","./atoms/Color/Color.js":"../../../node_modules/@designsystem/react/lib/atoms/Color/Color.js","./atoms/Margin/Margin.js":"../../../node_modules/@designsystem/react/lib/atoms/Margin/Margin.js","./atoms/Text/Text.js":"../../../node_modules/@designsystem/react/lib/atoms/Text/Text.js"}],"../../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./atoms/Button/Button.js":"../../../node_modules/@designsystem/react/lib/atoms/Button/Button.js","./atoms/Color/Color.js":"../../../node_modules/@designsystem/react/lib/atoms/Color/Color.js","./atoms/Margin/Margin.js":"../../../node_modules/@designsystem/react/lib/atoms/Margin/Margin.js","./atoms/Text/Text.js":"../../../node_modules/@designsystem/react/lib/atoms/Text/Text.js","./molecules/select/Select.js":"../../../node_modules/@designsystem/react/lib/molecules/select/Select.js"}],"../../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -33443,14 +33493,21 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var selectOptions = [{
+  label: 'Strict black',
+  value: 'strict-black'
+}, {
+  label: 'Heavenly Green',
+  value: 'heavenly-green'
+}, {
+  label: 'Sweet Pink',
+  value: 'sweet-pink'
+}];
 var container = document.querySelector('#root');
 var root = ReactDOM.createRoot(container);
-root.render(_react.default.createElement(_react2.Margin, {
-  left: true,
-  space: 'none'
-}, _react.default.createElement(_react2.Text, {
-  size: 'xs'
-}, "This is some text")));
+root.render(_react.default.createElement(_react2.Select, {
+  options: selectOptions
+}));
 },{"react":"../../../node_modules/react/index.js","react-dom/client":"../../../node_modules/react-dom/client.js","@designsystem/react":"../../../node_modules/@designsystem/react/lib/index.js","@designsystem/scss/lib/Button.css":"../../../node_modules/@designsystem/scss/lib/Button.css","@designsystem/scss/lib/Utilities.css":"../../../node_modules/@designsystem/scss/lib/Utilities.css","@designsystem/scss/lib/Margin.css":"../../../node_modules/@designsystem/scss/lib/Margin.css"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -33479,7 +33536,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "32913" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39075" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
