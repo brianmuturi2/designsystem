@@ -33361,7 +33361,7 @@ const Select = ({
     viewBox: "0 0 24 24",
     strokeWidth: 1.5,
     stroke: "currentColor",
-    className: "w-6 h-6",
+    className: `w-6 h-6 dse-select__caret ${isOpen ? 'dse-select__caret--open' : 'dse-select__caret--closed'}`,
     width: '1rem',
     height: '1rem'
   }, _react.default.createElement("path", {
