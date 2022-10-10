@@ -34,5 +34,21 @@
     width: 100%;
 
     box-shadow: map-get($shadows, 'base');
+
+    list-style: none;
   }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    cursor: pointer;
+    @include padding('xs');
+
+    &:hover {
+      background-color: $form-bg-hover;
+    }
+  }
+
 }

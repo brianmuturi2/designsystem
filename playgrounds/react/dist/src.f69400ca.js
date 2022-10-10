@@ -33360,6 +33360,7 @@ const Select = ({
     },
     className: 'dse-select__overlay'
   }, options.map((option, optionIndex) => _react.default.createElement("li", {
+    className: 'dse-select__option',
     key: option.value,
     onClick: () => onOptionSelected(option, optionIndex)
   }, option.label))) : null);
@@ -33540,9 +33541,13 @@ var selectOptions = [{
 }];
 var container = document.querySelector('#root');
 var root = ReactDOM.createRoot(container);
-root.render(_react.default.createElement(_react2.Select, {
+root.render(_react.default.createElement("div", {
+  style: {
+    padding: '40px'
+  }
+}, _react.default.createElement(_react2.Select, {
   options: selectOptions
-}));
+})));
 },{"react":"../../../node_modules/react/index.js","react-dom/client":"../../../node_modules/react-dom/client.js","@designsystem/react":"../../../node_modules/@designsystem/react/lib/index.js","@designsystem/scss/lib/Button.css":"../../../node_modules/@designsystem/scss/lib/Button.css","@designsystem/scss/lib/Utilities.css":"../../../node_modules/@designsystem/scss/lib/Utilities.css","@designsystem/scss/lib/Margin.css":"../../../node_modules/@designsystem/scss/lib/Margin.css","@designsystem/scss/lib/Select.css":"../../../node_modules/@designsystem/scss/lib/Select.css"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
