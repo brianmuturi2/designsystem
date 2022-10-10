@@ -4,7 +4,9 @@ import Text from '../../atoms/Text'
 const KEY_CODES = {
     ENTER: 13,
     SPACE: 32,
-    DOWN_ARROW: 40
+    DOWN_ARROW: 40,
+    UP_ARROW: 38,
+    ESC: 27
 }
 
 interface SelectOption {
@@ -23,6 +25,26 @@ interface SelectProps {
     label?: string;
     options?: SelectOption[];
     renderOption?: (props: RenderOptionProps) => React.ReactNode
+}
+
+const getNextOptionIndex = (currentIndex: number | null, options: SelectOption[]) => {
+    if (currentIndex === null || currentIndex === options.length - 1) {
+        return 0
+    }
+
+    return currentIndex + 1;
+}
+
+const getPreviousOptionIndex = (currentIndex: number | null, options: SelectOption[]) => {
+    if (currentIndex === null) {
+        return 0
+    }
+
+    if (currentIndex === 0) {
+        return options.length - 1
+    }
+
+    return currentIndex - 1
 }
 
 const Select: React.FunctionComponent<SelectProps> = ({options = [], label = 'Please select an option ...', onOptionSelected: handler, renderOption}) => {
@@ -76,7 +98,7 @@ const Select: React.FunctionComponent<SelectProps> = ({options = [], label = 'Pl
         selectedOption = options[selectedIndex];
     }
 
-    const highlightItem = (optionIndex: number | null) => {
+    const highlightOption = (optionIndex: number | null) => {
         setHighlightedIndex(optionIndex);
     }
 
@@ -87,9 +109,28 @@ const Select: React.FunctionComponent<SelectProps> = ({options = [], label = 'Pl
             setIsOpen(true);
 
             // set focus on the list item
-            highlightItem(0)
+            highlightOption(0)
         }
 
+    }
+
+    const onOptionKeyDown: KeyboardEventHandler = (event) => {
+        if (event.keyCode === KEY_CODES.ESC) {
+            setIsOpen(false);
+            return;
+        }
+
+        if (event.keyCode === KEY_CODES.DOWN_ARROW) {
+            highlightOption(getNextOptionIndex(highlightedIndex, options));
+        }
+
+        if (event.keyCode === KEY_CODES.UP_ARROW) {
+            highlightOption(getPreviousOptionIndex(highlightedIndex, options));
+        }
+
+        if (event.keyCode === KEY_CODES.ENTER) {
+            onOptionSelected(options[highlightedIndex!], highlightedIndex!)
+        }
     }
 
     return (
@@ -120,9 +161,13 @@ const Select: React.FunctionComponent<SelectProps> = ({options = [], label = 'Pl
                                     className: `dse-select__option ${isSelected ? 'dse-select__option--selected' : ''} ${isHighlighted ? 'dse-select__option--highlighted' : ''}`,
                                     key: option.value,
                                     ref,
+                                    role: 'menuitemradio',
+                                    'aria-label': option.label,
+                                    'aria-checked': isSelected ? true : undefined,
+                                    onKeyDown: onOptionKeyDown,
                                     tabIndex: isHighlighted ? -1 : 0,
-                                    onMouseEnter: () => highlightItem(optionIndex),
-                                    onMouseLeave: () => highlightItem(null),
+                                    onMouseEnter: () => highlightOption(optionIndex),
+                                    onMouseLeave: () => highlightOption(null),
                                     onClick: () => onOptionSelected(option, optionIndex),
                                     ...overrideProps
                                 })
