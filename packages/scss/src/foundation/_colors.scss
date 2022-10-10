@@ -38,6 +38,8 @@ $form-border-color: var(--dse-form-border-color, $white-dark) !default;
 $form-color: var(--dse-form-color, $dark) !default;
 $form-bg: var(--dse-form-bg, $white) !default;
 $form-bg-hover: var(--dse-form-bg-hover, $white-dark) !default;
+$form-bg-option-selected: var(--dse-form-bg-option-selected, $green) !default;
+$form-color-option-selected: var(--dse-form-color-option-selected, $white) !default;
 $form-error-color: var(--dse-form-error-color, $red) !default;
 $form-error-border: var(--dse-form-error-border, $red) !default;
 $form-border-focus-color: var(--dse-form-border-focus-color, $green) !default;
