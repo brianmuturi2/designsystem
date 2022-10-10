@@ -59,12 +59,12 @@
     @include padding('xs');
     box-sizing: border-box;
 
-    &:hover {
+    &--highlighted {
       background-color: $form-bg-hover;
     }
   }
 
-  &__option--selected, &__option--selected:hover {
+  &__option--selected {
     background-color: $form-bg-option-selected;
     color: $form-color-option-selected;
   }
