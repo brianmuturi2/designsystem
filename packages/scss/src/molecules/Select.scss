@@ -42,6 +42,7 @@
     background-color: $form-bg;
     z-index: 99;
 
+    display: none;
     position: absolute;
     width: 100%;
 
@@ -69,4 +70,10 @@
     color: $form-color-option-selected;
   }
 
+}
+
+.dse-select__overlay {
+  &--open {
+    display: block;
+  }
 }

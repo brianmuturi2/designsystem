@@ -146,52 +146,50 @@ const Select: React.FunctionComponent<SelectProps> = ({options = [], label = 'Pl
             </button>
 
             {
-                isOpen ? (
-                    <ul role={'menu'} id={'dse-select-list'} style={{top: overlayTop}} className={'dse-select__overlay'}>
-                        {options.map((option, optionIndex) => {
-                            const isSelected = selectedIndex === optionIndex;
-                            const isHighlighted = highlightedIndex === optionIndex;
+                <ul role={'menu'} id={'dse-select-list'} style={{top: overlayTop}} className={`dse-select__overlay ${isOpen ? 'dse-select__overlay--open' : ''}`}>
+                    {options.map((option, optionIndex) => {
+                        const isSelected = selectedIndex === optionIndex;
+                        const isHighlighted = highlightedIndex === optionIndex;
 
-                            const ref = optionRefs[optionIndex];
+                        const ref = optionRefs[optionIndex];
 
-                            const renderOptionProps = {
-                                option,
-                                isSelected,
-                                getOptionRecommendedProps: (overrideProps = {}) => ({
-                                    className: `dse-select__option ${isSelected ? 'dse-select__option--selected' : ''} ${isHighlighted ? 'dse-select__option--highlighted' : ''}`,
-                                    key: option.value,
-                                    ref,
-                                    role: 'menuitemradio',
-                                    'aria-label': option.label,
-                                    'aria-checked': isSelected ? true : undefined,
-                                    onKeyDown: onOptionKeyDown,
-                                    tabIndex: isHighlighted ? -1 : 0,
-                                    onMouseEnter: () => highlightOption(optionIndex),
-                                    onMouseLeave: () => highlightOption(null),
-                                    onClick: () => onOptionSelected(option, optionIndex),
-                                    ...overrideProps
-                                })
-                            };
+                        const renderOptionProps = {
+                            option,
+                            isSelected,
+                            getOptionRecommendedProps: (overrideProps = {}) => ({
+                                className: `dse-select__option ${isSelected ? 'dse-select__option--selected' : ''} ${isHighlighted ? 'dse-select__option--highlighted' : ''}`,
+                                key: option.value,
+                                ref,
+                                role: 'menuitemradio',
+                                'aria-label': option.label,
+                                'aria-checked': isSelected ? true : undefined,
+                                onKeyDown: onOptionKeyDown,
+                                tabIndex: isHighlighted ? -1 : 0,
+                                onMouseEnter: () => highlightOption(optionIndex),
+                                onMouseLeave: () => highlightOption(null),
+                                onClick: () => onOptionSelected(option, optionIndex),
+                                ...overrideProps
+                            })
+                        };
 
-                            if (renderOption) {
-                                return renderOption(renderOptionProps)
-                            }
+                        if (renderOption) {
+                            return renderOption(renderOptionProps)
+                        }
 
-                            return (
-                                <li {...renderOptionProps.getOptionRecommendedProps()}>
-                                    <Text>{option.label}</Text>
+                        return (
+                            <li {...renderOptionProps.getOptionRecommendedProps()}>
+                                <Text>{option.label}</Text>
 
-                                    {
-                                        isSelected &&
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6" width={'1rem'} height={'1rem'}>
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                                        </svg>
-                                    }
+                                {
+                                    isSelected &&
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6" width={'1rem'} height={'1rem'}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                    </svg>
+                                }
 
-                                </li>
-                        )})}
-                    </ul>
-                ) : null
+                            </li>
+                    )})}
+                </ul>
             }
         </div>
     );
