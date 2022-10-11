@@ -135,7 +135,7 @@ const Select: React.FunctionComponent<SelectProps> = ({options = [], label = 'Pl
 
     return (
         <div className={'dse-select'}>
-            <button onKeyDown={onButtonKeyDown} aria-controls={'dse-select-list'} aria-haspopup={true} aria-expanded={isOpen ? true : undefined} ref={labelRef} className={'dse-select__label'} onClick={onLabelClick}>
+            <button data-testid={'DseSelectButton'} onKeyDown={onButtonKeyDown} aria-controls={'dse-select-list'} aria-haspopup={true} aria-expanded={isOpen ? true : undefined} ref={labelRef} className={'dse-select__label'} onClick={onLabelClick}>
                 <Text>
                     {selectedOption === null ? label : selectedOption.label}
                 </Text>
