@@ -1,6 +1,6 @@
 {
   "name": "@designsystem/react",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "lib/index.js",
   "license": "MIT",
   "devDependencies": {
@@ -29,7 +29,6 @@
     "rollup-plugin-typescript2": "^0.34.1",
     "typescript": "^4.8.4"
   },
-  "dependencies": {},
   "scripts": {
     "build": "rollup -c",
     "dev": "yarn build --watch",
